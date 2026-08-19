@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/common/accept-credit-offer.schema.json",
+  "title": "AcceptCreditOffer",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "offerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "termsHash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "offerId",
+        "termsHash",
+        "idempotencyKey"
+      ]
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "offerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "DocumentsPending"
+        }
+      },
+      "required": [
+        "applicationId",
+        "offerId",
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "request",
+    "response"
+  ]
+}

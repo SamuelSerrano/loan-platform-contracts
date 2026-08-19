@@ -1,0 +1,24 @@
+asyncapi: 3.1.0
+info:
+  title: Credit Assessment Asynchronous Requests
+  version: 0.1.0
+  description: Policy request intent, not an integration event and not assigned an IE identifier.
+defaultContentType: application/json
+channels:
+  creditAssessmentRequested:
+    address: loan.credit.credit-assessment-requested.v1
+    messages:
+      CreditAssessmentRequested:
+        $ref: '#/components/messages/CreditAssessmentRequested'
+operations:
+  sendCreditAssessmentRequested:
+    action: send
+    channel: { $ref: '#/channels/creditAssessmentRequested' }
+components:
+  messages:
+    CreditAssessmentRequested:
+      name: CreditAssessmentRequested.v1
+      x-contract-kind: Asynchronous policy request; not an integration event and no IE identifier
+      x-producer: Application Process
+      x-known-consumers: [Credit Decisioning]
+      payload: { $ref: ../schemas/requests/credit-assessment-requested.v1.schema.json }

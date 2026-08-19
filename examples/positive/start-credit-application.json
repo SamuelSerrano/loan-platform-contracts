@@ -1,0 +1,11 @@
+{
+  "request": {
+    "productId": "productId-example",
+    "idempotencyKey": "idempotencyKey-example"
+  },
+  "response": {
+    "applicationId": "applicationId-example",
+    "applicationNumber": "applicationNumber-example",
+    "status": "Draft"
+  }
+}

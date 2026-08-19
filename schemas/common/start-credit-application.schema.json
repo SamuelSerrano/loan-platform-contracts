@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/common/start-credit-application.schema.json",
+  "title": "StartCreditApplication",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "productId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "productId",
+        "idempotencyKey"
+      ]
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicationNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "const": "Draft"
+        }
+      },
+      "required": [
+        "applicationId",
+        "applicationNumber",
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "request",
+    "response"
+  ]
+}

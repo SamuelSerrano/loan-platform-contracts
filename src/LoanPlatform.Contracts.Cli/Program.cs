@@ -1,1 +1,41 @@
-Console.WriteLine("Loan Platform Contracts bootstrap. Executable validation is implemented on the issue #18 feature branch.");
+using LoanPlatform.Contracts.Application.Validation;
+using LoanPlatform.Contracts.Infrastructure.Artifacts;
+using LoanPlatform.Contracts.Infrastructure.Reporting;
+using LoanPlatform.Contracts.Infrastructure.Repository;
+using LoanPlatform.Contracts.Infrastructure.Validation;
+
+if (args is not ["validate"])
+{
+    Console.Error.WriteLine("Usage: loan-platform-contracts validate");
+    return 2;
+}
+
+string root = FindRepositoryRoot(Environment.CurrentDirectory);
+YamlArtifactRepository artifacts = new(root);
+ValidateContracts useCase = new(
+    artifacts,
+    [
+        new ArtifactStructureValidator(root),
+        new FieldReconciliationValidator(root, artifacts),
+        new JsonSchemaExamplesValidator(root, artifacts),
+        new PolicyIntegrityValidator(root),
+        new PublicBoundaryValidator(root),
+        new TrackedSourceSecretValidator(root),
+        new BoundedProcessValidator("openapi-official", "Redocly CLI 2.46.2", root, "npm", ["run", "validate:openapi"], TimeSpan.FromMinutes(2)),
+        new BoundedProcessValidator("asyncapi-official", "AsyncAPI Parser 3.6.3", root, "npm", ["run", "validate:asyncapi"], TimeSpan.FromMinutes(2)),
+        new BoundedProcessValidator("markdown-links", "markdown-link-check 3.15.0", root, "npm", ["run", "validate:links"], TimeSpan.FromMinutes(2))
+    ],
+    new InitialCompatibilityBaseline(),
+    new JsonValidationReportWriter(root),
+    new LocalRepositoryMetadata(root));
+ValidationReport report = await useCase.ExecuteAsync(CancellationToken.None);
+Console.WriteLine($"Validated {report.ContractCount} contracts and {report.FieldPathCount} approved field paths; {report.Findings.Count} finding(s).");
+return report.Succeeded ? 0 : 1;
+
+static string FindRepositoryRoot(string start)
+{
+    DirectoryInfo? directory = new(start);
+    while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "LoanPlatform.Contracts.slnx")))
+        directory = directory.Parent;
+    return directory?.FullName ?? throw new InvalidOperationException("Repository root not found.");
+}

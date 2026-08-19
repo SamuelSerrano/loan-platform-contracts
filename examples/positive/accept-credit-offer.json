@@ -1,0 +1,12 @@
+{
+  "request": {
+    "offerId": "offerId-example",
+    "termsHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "idempotencyKey": "idempotencyKey-example"
+  },
+  "response": {
+    "applicationId": "applicationId-example",
+    "offerId": "offerId-example",
+    "status": "DocumentsPending"
+  }
+}

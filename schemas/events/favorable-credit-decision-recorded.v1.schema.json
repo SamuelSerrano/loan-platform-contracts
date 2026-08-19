@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/events/favorable-credit-decision-recorded.v1.schema.json",
+  "title": "FavorableCreditDecisionRecorded.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventType": {
+      "const": "FavorableCreditDecisionRecorded.v1"
+    },
+    "eventVersion": {
+      "const": 1
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
+    },
+    "aggregateId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "causationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producer": {
+      "const": "CreditDecisioning"
+    },
+    "traceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assessmentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "riskBand": {
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "segment": {
+          "type": "string",
+          "enum": [
+            "New",
+            "Standard",
+            "Preferred"
+          ]
+        },
+        "alternativeIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rulesetVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "assessmentId",
+        "applicationId",
+        "decisionId",
+        "riskBand",
+        "segment",
+        "alternativeIds",
+        "policyVersion",
+        "rulesetVersion"
+      ]
+    }
+  },
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "aggregateId",
+    "correlationId",
+    "causationId",
+    "producer",
+    "traceId",
+    "payload"
+  ]
+}

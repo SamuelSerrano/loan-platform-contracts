@@ -9,6 +9,7 @@
   "scripts": {
     "validate:openapi": "redocly lint openapi/loan-application-api.v1.yaml && redocly bundle openapi/loan-application-api.v1.yaml --output artifacts/validation/openapi-bundle.yaml",
     "validate:asyncapi": "node tools/validate-asyncapi.mjs asyncapi/integration-events.v1.yaml asyncapi/credit-assessment-requests.v1.yaml",
+    "validate:links": "markdown-link-check README.md && markdown-link-check docs/INITIAL_M1_DESIGN.md",
     "validate:standards": "npm run validate:openapi && npm run validate:asyncapi"
   },
   "devDependencies": {

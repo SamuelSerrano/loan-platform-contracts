@@ -1,0 +1,20 @@
+{
+  "eventId": "eventId-example",
+  "eventType": "CreditApplicationSubmitted.v1",
+  "eventVersion": 2,
+  "occurredAt": "2026-08-19T12:00:00Z",
+  "aggregateId": "aggregateId-example",
+  "correlationId": "correlationId-example",
+  "causationId": "causationId-example",
+  "producer": "ApplicationProcess",
+  "traceId": "traceId-example",
+  "payload": {
+    "applicationId": "applicationId-example",
+    "customerId": "customerId-example",
+    "productId": "productId-example",
+    "consentReferenceIds": [
+      "consentReferenceIds-example"
+    ],
+    "submittedAt": "2026-08-19T12:00:00Z"
+  }
+}

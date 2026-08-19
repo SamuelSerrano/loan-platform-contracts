@@ -4,7 +4,7 @@ obj/
 .idea/
 .vscode/
 node_modules/
-artifacts/
+/artifacts/
 TestResults/
 *.user
 *.suo

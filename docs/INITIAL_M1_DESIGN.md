@@ -73,15 +73,15 @@ The CLI loads the derived governance manifest, discovers contract artifacts, and
 
 Producer and consumer fixtures use separate private C# types. The producer serializes its own model and the consumer deserializes to a different private model; JSON Schema is the shared boundary. No DTO assembly or NuGet package is produced.
 
-The deterministic report at `artifacts/validation/validation-report.json` records the source commit, current commit, UTC execution time, .NET and validator versions, selected standards, counts, gate outcomes, compatibility status, and overall result. Paths are repository-relative, sensitive values are excluded, and CI supplies its secret-scan result. Generated artifacts remain ignored unless explicitly attached by CI.
+The consolidated report at `artifacts/validation/validation-report.json` records the source commit, current commit, UTC execution time, .NET and validator versions, selected standards, exact counts, each gate result, compatibility status, findings, and overall result. Policy-integrity and tracked-source secret scanning are mandatory CLI gates. Secret findings record only the safe relative path and pattern identifier; matched values and tool output are omitted. Generated evidence remains ignored locally and is attached by CI.
 
 Initial compatibility reports exactly `Initial baseline — no previous release`. After a reviewed `v0.1.0` release exists, a future change may compare against the latest published baseline through the Git adapter. This phase does not simulate or publish that baseline.
 
 ## 7. Test and CI strategy
 
-TDD covers governance invariants and orchestration before adapters. Architecture tests enforce project references, layer direction, absence of future-service domain models, and absence of a shared DTO package. Contract tests cover all approved positive and negative scenarios, unsupported versions, additional and prohibited fields, invalid timestamps, open nested structures, identity precondition failure, operational dispositions, both credit outcomes, immutable offers, duplicates, and malformed messages.
+TDD covers governance invariants and orchestration before adapters. Architecture tests enforce project references, layer direction, and the non-packable boundary that prevents a shared DTO package. Contract tests validate every positive schema plus explicit negative expectations for unsupported versions, wrong wire identities, additional and prohibited fields, invalid/non-UTC timestamps, identity precondition failure, immutable hashes, duplicates, changed replay, malformed messages, operational dispositions, and both credit outcomes.
 
-CI uses pinned GitHub Actions and exact tool versions. It restores, builds, verifies formatting, runs every test project, invokes the CLI, validates OpenAPI/AsyncAPI/JSON Schema, verifies examples and 16/175 counts, checks closed schemas and prohibited fields, evaluates initial compatibility, scans secrets, validates Markdown links/anchors, and uploads sanitized evidence. No AWS, paid service, external runner, persistent infrastructure, or disabled warning/test is allowed.
+CI uses pinned GitHub Actions and exact tool versions. It restores, builds, verifies formatting, runs every test project, and invokes the same consolidated CLI used locally. The CLI owns OpenAPI, AsyncAPI, JSON Schema/examples, exact 16/175 reconciliation, closed-schema, policy-integrity, prohibited-field, Q-008, tracked-source secret, link, and initial-compatibility gates. CI uploads that sanitized consolidated evidence and does not maintain a second secret-scan implementation. No AWS, paid service, external runner, persistent infrastructure, or disabled warning/test is allowed.
 
 ## 8. Failure behavior
 

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/common/get-credit-application-status.schema.json",
+  "title": "GetCreditApplicationStatus",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Draft",
+            "IdentityPending",
+            "DecisionPending",
+            "Offered",
+            "OfferAccepted",
+            "OfferClosed",
+            "DocumentsPending",
+            "CreditDeclined",
+            "OperationalException"
+          ]
+        },
+        "activeOffer": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "offerId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "termsHash": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "termMonths": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "installmentAmount": {
+              "type": "number"
+            },
+            "interestRate": {
+              "type": "number"
+            },
+            "expiresAt": {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
+            }
+          }
+        }
+      },
+      "required": [
+        "applicationId",
+        "status"
+      ]
+    }
+  },
+  "required": [
+    "response"
+  ]
+}

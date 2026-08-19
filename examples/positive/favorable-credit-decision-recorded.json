@@ -1,0 +1,23 @@
+{
+  "eventId": "eventId-example",
+  "eventType": "FavorableCreditDecisionRecorded.v1",
+  "eventVersion": 1,
+  "occurredAt": "2026-08-19T12:00:00Z",
+  "aggregateId": "aggregateId-example",
+  "correlationId": "correlationId-example",
+  "causationId": "causationId-example",
+  "producer": "CreditDecisioning",
+  "traceId": "traceId-example",
+  "payload": {
+    "assessmentId": "assessmentId-example",
+    "applicationId": "applicationId-example",
+    "decisionId": "decisionId-example",
+    "riskBand": "Low",
+    "segment": "New",
+    "alternativeIds": [
+      "alternativeIds-example"
+    ],
+    "policyVersion": "1.0.0",
+    "rulesetVersion": "rulesetVersion-example"
+  }
+}

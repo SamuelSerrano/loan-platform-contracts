@@ -1,0 +1,40 @@
+{
+  "requestId": "requestId-example",
+  "requestType": "UnknownRequest.v1",
+  "requestVersion": 1,
+  "requestedAt": "2026-08-19T12:00:00Z",
+  "applicationId": "applicationId-example",
+  "assessmentVersion": 1,
+  "correlationId": "correlationId-example",
+  "causationId": "causationId-example",
+  "producer": "ApplicationProcess",
+  "targetCapability": "CreditDecisioning",
+  "traceId": "traceId-example",
+  "idempotencyKey": "idempotencyKey-example",
+  "snapshotHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "payload": {
+    "customerId": "customerId-example",
+    "productId": "productId-example",
+    "requestedAmount": 1000.0,
+    "currency": "COP",
+    "requestedTermMonths": 1,
+    "applicantAgeYears": 1,
+    "residenceMarket": "residenceMarket-example",
+    "safetyScreeningResult": "Clear",
+    "hasConcurrentActiveApplication": false,
+    "hasActiveLoan": false,
+    "verifiedNetMonthlyIncome": 1000.0,
+    "monthlyDebtObligations": 1000.0,
+    "identityVerificationId": "identityVerificationId-example",
+    "identityVerificationStatus": "Verified",
+    "identityVerificationLevel": "identityVerificationLevel-example",
+    "identityEvidenceStatus": "Sufficient",
+    "identityVerifiedAt": "2026-08-19T12:00:00Z",
+    "identityValidUntil": "2026-08-19T12:00:00Z",
+    "consentReferenceIds": [
+      "consentReferenceIds-example"
+    ],
+    "policyVersion": "1.0.0",
+    "rulesetVersion": "rulesetVersion-example"
+  }
+}

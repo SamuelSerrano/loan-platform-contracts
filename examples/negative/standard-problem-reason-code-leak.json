@@ -1,0 +1,10 @@
+{
+  "type": "type-example",
+  "title": "title-example",
+  "status": 400,
+  "code": "code-example",
+  "traceId": "traceId-example",
+  "reasonCodes": [
+    "CREDIT_INTERNAL"
+  ]
+}
