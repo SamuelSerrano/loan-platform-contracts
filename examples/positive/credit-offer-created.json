@@ -1,0 +1,29 @@
+{
+  "eventId": "eventId-example",
+  "eventType": "CreditOfferCreated.v1",
+  "eventVersion": 1,
+  "occurredAt": "2026-08-19T12:00:00Z",
+  "aggregateId": "aggregateId-example",
+  "correlationId": "correlationId-example",
+  "causationId": "causationId-example",
+  "producer": "ApplicationProcess",
+  "traceId": "traceId-example",
+  "payload": {
+    "applicationId": "applicationId-example",
+    "assessmentId": "assessmentId-example",
+    "decisionId": "decisionId-example",
+    "alternativeId": "alternativeId-example",
+    "offerId": "offerId-example",
+    "terms": {
+      "amount": 1000.0,
+      "currency": "COP",
+      "termMonths": 1,
+      "installmentAmount": 1000.0,
+      "interestRate": 1000.0
+    },
+    "termsHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expiresAt": "2026-08-19T12:00:00Z",
+    "policyVersion": "policyVersion-example",
+    "rulesetVersion": "rulesetVersion-example"
+  }
+}

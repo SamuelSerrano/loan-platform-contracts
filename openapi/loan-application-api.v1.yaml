@@ -1,0 +1,157 @@
+openapi: 3.1.2
+info:
+  title: Loan Application API
+  version: 0.1.0
+  description: Fictitious M1 HTTP contract. Repository release v0.1.0 is not published.
+  license:
+    name: MIT
+    identifier: MIT
+servers:
+  - url: https://api.example.invalid
+    description: Documentation-only placeholder; no service has been implemented.
+paths:
+  /credit-applications:
+    post:
+      summary: Start or recover a credit application
+      operationId: StartCreditApplication
+      security:
+        - applicantOAuth: [applications:start]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/StartCreditApplicationRequest'
+      responses:
+        '201':
+          description: Application draft created or recovered.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/StartCreditApplicationResponse'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /credit-applications/{applicationId}:
+    parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+    get:
+      summary: Get the safe credit application status
+      operationId: GetCreditApplicationStatus
+      security:
+        - applicantOAuth: [applications:read]
+      responses:
+        '200':
+          description: Safe owner-authorized journey projection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCreditApplicationStatusResponse'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /credit-applications/{applicationId}/submission:
+    parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+    post:
+      summary: Submit a credit application
+      operationId: SubmitCreditApplication
+      security:
+        - applicantOAuth: [applications:submit]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/SubmitCreditApplicationRequest'
+      responses:
+        '202':
+          description: Application submission accepted.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/SubmitCreditApplicationResponse'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+  /credit-applications/{applicationId}/offer-acceptance:
+    parameters:
+      - $ref: '#/components/parameters/ApplicationId'
+    post:
+      summary: Accept the exact active credit offer
+      operationId: AcceptCreditOffer
+      security:
+        - applicantOAuth: [offers:accept]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/AcceptCreditOfferRequest'
+      responses:
+        '200':
+          description: Exact immutable offer accepted idempotently.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/AcceptCreditOfferResponse'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+components:
+  schemas:
+    StartCreditApplicationRequest:
+      $ref: ../schemas/common/start-credit-application.schema.json#/properties/request
+    StartCreditApplicationResponse:
+      $ref: ../schemas/common/start-credit-application.schema.json#/properties/response
+    GetCreditApplicationStatusResponse:
+      $ref: ../schemas/common/get-credit-application-status.schema.json#/properties/response
+    SubmitCreditApplicationRequest:
+      $ref: ../schemas/common/submit-credit-application.schema.json#/properties/request
+    SubmitCreditApplicationResponse:
+      $ref: ../schemas/common/submit-credit-application.schema.json#/properties/response
+    AcceptCreditOfferRequest:
+      $ref: ../schemas/common/accept-credit-offer.schema.json#/properties/request
+    AcceptCreditOfferResponse:
+      $ref: ../schemas/common/accept-credit-offer.schema.json#/properties/response
+  securitySchemes:
+    applicantOAuth:
+      type: oauth2
+      description: Provider-neutral OAuth 2.0/JWT boundary. Resource authorization is evaluated independently.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://authorization.example.invalid/oauth2/authorize
+          tokenUrl: https://authorization.example.invalid/oauth2/token
+          scopes:
+            applications:start: Start or recover the caller's application.
+            applications:submit: Submit the caller's application.
+            applications:read: Read the caller's safe journey projection.
+            offers:accept: Accept the caller's exact active offer.
+  parameters:
+    ApplicationId:
+      name: applicationId
+      in: path
+      required: true
+      description: Opaque application identifier; ownership is resolved from the authenticated subject.
+      schema: { type: string, minLength: 1 }
+  responses:
+    Unauthorized:
+      description: Missing, invalid, or expired token.
+      content:
+        application/problem+json:
+          schema: { $ref: ../schemas/common/standard-problem.schema.json }
+    Forbidden:
+      description: Authenticated actor lacks scope or resource ownership.
+      content:
+        application/problem+json:
+          schema: { $ref: ../schemas/common/standard-problem.schema.json }
+    NotFound:
+      description: Owner-safe resource absence response.
+      content:
+        application/problem+json:
+          schema: { $ref: ../schemas/common/standard-problem.schema.json }
+    Conflict:
+      description: Idempotency, state, expiry, or immutable-offer conflict.
+      content:
+        application/problem+json:
+          schema: { $ref: ../schemas/common/standard-problem.schema.json }

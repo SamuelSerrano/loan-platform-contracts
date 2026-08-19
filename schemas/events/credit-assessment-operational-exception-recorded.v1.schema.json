@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/events/credit-assessment-operational-exception-recorded.v1.schema.json",
+  "title": "CreditAssessmentOperationalExceptionRecorded.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventVersion": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "aggregateId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "causationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "traceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "assessmentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reasonCode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recoveryReference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "assessmentId",
+        "applicationId",
+        "reasonCode",
+        "recoveryReference"
+      ]
+    }
+  },
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "aggregateId",
+    "correlationId",
+    "causationId",
+    "producer",
+    "traceId",
+    "payload"
+  ]
+}

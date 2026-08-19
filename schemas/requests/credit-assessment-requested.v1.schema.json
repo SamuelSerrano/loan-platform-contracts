@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/requests/credit-assessment-requested.v1.schema.json",
+  "title": "CreditAssessmentRequested.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requestType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requestVersion": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "requestedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "applicationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assessmentVersion": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "correlationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "causationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetCapability": {
+      "type": "string",
+      "minLength": 1
+    },
+    "traceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "idempotencyKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshotHash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestedAmount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestedTermMonths": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "applicantAgeYears": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "residenceMarket": {
+          "type": "string",
+          "minLength": 1
+        },
+        "safetyScreeningResult": {
+          "type": "string",
+          "enum": [
+            "Clear",
+            "ConfirmedStop"
+          ]
+        },
+        "hasConcurrentActiveApplication": {
+          "type": "boolean"
+        },
+        "hasActiveLoan": {
+          "type": "boolean"
+        },
+        "verifiedNetMonthlyIncome": {
+          "type": "number"
+        },
+        "monthlyDebtObligations": {
+          "type": "number"
+        },
+        "identityVerificationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identityVerificationStatus": {
+          "const": "Verified"
+        },
+        "identityVerificationLevel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identityEvidenceStatus": {
+          "type": "string",
+          "enum": [
+            "Sufficient",
+            "Insufficient"
+          ]
+        },
+        "identityVerifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "identityValidUntil": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "consentReferenceIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rulesetVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "customerId",
+        "productId",
+        "requestedAmount",
+        "currency",
+        "requestedTermMonths",
+        "applicantAgeYears",
+        "residenceMarket",
+        "safetyScreeningResult",
+        "hasConcurrentActiveApplication",
+        "hasActiveLoan",
+        "verifiedNetMonthlyIncome",
+        "monthlyDebtObligations",
+        "identityVerificationId",
+        "identityVerificationStatus",
+        "identityVerificationLevel",
+        "identityEvidenceStatus",
+        "identityVerifiedAt",
+        "identityValidUntil",
+        "consentReferenceIds",
+        "policyVersion",
+        "rulesetVersion"
+      ]
+    }
+  },
+  "required": [
+    "requestId",
+    "requestType",
+    "requestVersion",
+    "requestedAt",
+    "applicationId",
+    "assessmentVersion",
+    "correlationId",
+    "causationId",
+    "producer",
+    "targetCapability",
+    "traceId",
+    "idempotencyKey",
+    "snapshotHash",
+    "payload"
+  ]
+}

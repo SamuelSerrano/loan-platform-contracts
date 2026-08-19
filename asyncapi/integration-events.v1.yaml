@@ -1,0 +1,91 @@
+asyncapi: 3.1.0
+info:
+  title: Loan Platform Initial Integration Events
+  version: 0.1.0
+  description: Nine occurred-fact contracts. No CloudEvents conformance is declared.
+defaultContentType: application/json
+channels:
+  creditApplicationSubmitted:
+    address: loan.application.credit-application-submitted.v1
+    messages:
+      CreditApplicationSubmitted:
+        $ref: '#/components/messages/CreditApplicationSubmitted'
+  customerIdentityVerified:
+    address: loan.identity.customer-identity-verified.v1
+    messages:
+      CustomerIdentityVerified:
+        $ref: '#/components/messages/CustomerIdentityVerified'
+  customerIdentityRejected:
+    address: loan.identity.customer-identity-rejected.v1
+    messages:
+      CustomerIdentityRejected:
+        $ref: '#/components/messages/CustomerIdentityRejected'
+  creditAssessmentPendingEvidence:
+    address: loan.credit.credit-assessment-pending-evidence.v1
+    messages:
+      CreditAssessmentPendingEvidence:
+        $ref: '#/components/messages/CreditAssessmentPendingEvidence'
+  creditAssessmentPendingRetry:
+    address: loan.credit.credit-assessment-pending-retry.v1
+    messages:
+      CreditAssessmentPendingRetry:
+        $ref: '#/components/messages/CreditAssessmentPendingRetry'
+  creditAssessmentOperationalExceptionRecorded:
+    address: loan.credit.credit-assessment-operational-exception-recorded.v1
+    messages:
+      CreditAssessmentOperationalExceptionRecorded:
+        $ref: '#/components/messages/CreditAssessmentOperationalExceptionRecorded'
+  favorableCreditDecisionRecorded:
+    address: loan.credit.favorable-credit-decision-recorded.v1
+    messages:
+      FavorableCreditDecisionRecorded:
+        $ref: '#/components/messages/FavorableCreditDecisionRecorded'
+  unfavorableCreditDecisionRecorded:
+    address: loan.credit.unfavorable-credit-decision-recorded.v1
+    messages:
+      UnfavorableCreditDecisionRecorded:
+        $ref: '#/components/messages/UnfavorableCreditDecisionRecorded'
+  creditOfferCreated:
+    address: loan.credit.credit-offer-created.v1
+    messages:
+      CreditOfferCreated:
+        $ref: '#/components/messages/CreditOfferCreated'
+operations:
+  sendCreditApplicationSubmitted: { action: send, channel: { $ref: '#/channels/creditApplicationSubmitted' } }
+  sendCustomerIdentityVerified: { action: send, channel: { $ref: '#/channels/customerIdentityVerified' } }
+  sendCustomerIdentityRejected: { action: send, channel: { $ref: '#/channels/customerIdentityRejected' } }
+  sendCreditAssessmentPendingEvidence: { action: send, channel: { $ref: '#/channels/creditAssessmentPendingEvidence' } }
+  sendCreditAssessmentPendingRetry: { action: send, channel: { $ref: '#/channels/creditAssessmentPendingRetry' } }
+  sendCreditAssessmentOperationalExceptionRecorded: { action: send, channel: { $ref: '#/channels/creditAssessmentOperationalExceptionRecorded' } }
+  sendFavorableCreditDecisionRecorded: { action: send, channel: { $ref: '#/channels/favorableCreditDecisionRecorded' } }
+  sendUnfavorableCreditDecisionRecorded: { action: send, channel: { $ref: '#/channels/unfavorableCreditDecisionRecorded' } }
+  sendCreditOfferCreated: { action: send, channel: { $ref: '#/channels/creditOfferCreated' } }
+components:
+  messages:
+    CreditApplicationSubmitted:
+      name: CreditApplicationSubmitted.v1
+      payload: { $ref: ../schemas/events/credit-application-submitted.v1.schema.json }
+    CustomerIdentityVerified:
+      name: CustomerIdentityVerified.v1
+      payload: { $ref: ../schemas/events/customer-identity-verified.v1.schema.json }
+    CustomerIdentityRejected:
+      name: CustomerIdentityRejected.v1
+      payload: { $ref: ../schemas/events/customer-identity-rejected.v1.schema.json }
+    CreditAssessmentPendingEvidence:
+      name: CreditAssessmentPendingEvidence.v1
+      payload: { $ref: ../schemas/events/credit-assessment-pending-evidence.v1.schema.json }
+    CreditAssessmentPendingRetry:
+      name: CreditAssessmentPendingRetry.v1
+      payload: { $ref: ../schemas/events/credit-assessment-pending-retry.v1.schema.json }
+    CreditAssessmentOperationalExceptionRecorded:
+      name: CreditAssessmentOperationalExceptionRecorded.v1
+      payload: { $ref: ../schemas/events/credit-assessment-operational-exception-recorded.v1.schema.json }
+    FavorableCreditDecisionRecorded:
+      name: FavorableCreditDecisionRecorded.v1
+      payload: { $ref: ../schemas/events/favorable-credit-decision-recorded.v1.schema.json }
+    UnfavorableCreditDecisionRecorded:
+      name: UnfavorableCreditDecisionRecorded.v1
+      payload: { $ref: ../schemas/events/unfavorable-credit-decision-recorded.v1.schema.json }
+    CreditOfferCreated:
+      name: CreditOfferCreated.v1
+      payload: { $ref: ../schemas/events/credit-offer-created.v1.schema.json }

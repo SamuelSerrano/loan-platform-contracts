@@ -1,0 +1,71 @@
+{
+  "policyId": "policyId-example",
+  "policyVersion": "policyVersion-example",
+  "rulesetVersion": "rulesetVersion-example",
+  "effectiveFrom": "2026-08-19T12:00:00Z",
+  "product": {
+    "productId": "productId-example",
+    "minimumAmount": 1000.0,
+    "maximumAmount": 1000.0,
+    "currency": "COP",
+    "supportedTermMonths": [
+      "supportedTermMonths-example"
+    ],
+    "lowFrictionThreshold": "lowFrictionThreshold-example"
+  },
+  "eligibility": {
+    "minimumAgeAtApplication": 1,
+    "maximumAgeAtMaturity": 1,
+    "minimumIncome": 1000.0,
+    "maximumActiveApplicationsPerCustomer": 1,
+    "maximumActiveLoansPerCustomer": 1,
+    "supportedMarkets": [
+      "supportedMarkets-example"
+    ]
+  },
+  "risk": {
+    "minimumValidScore": 1,
+    "maximumValidScore": 1,
+    "minimumEligibleScore": 1,
+    "riskBands": [
+      {
+        "band": "band-example",
+        "minimumScore": 1,
+        "maximumScore": 1,
+        "paymentToIncomeLimit": 1000.0,
+        "exposureCap": "exposureCap-example",
+        "permittedTermMonths": [
+          "permittedTermMonths-example"
+        ],
+        "baseMonthlyEffectiveRate": 1000.0
+      }
+    ]
+  },
+  "alternatives": {
+    "segmentRules": [
+      {
+        "segment": "segment-example",
+        "exposureCap": "exposureCap-example",
+        "rateAdjustmentPercentagePoints": 1000.0
+      }
+    ],
+    "maximumCount": 1,
+    "objectives": [
+      "objectives-example"
+    ]
+  },
+  "offer": {
+    "validityDuration": "validityDuration-example"
+  },
+  "pricing": {
+    "minimumMonthlyEffectiveRate": 1000.0
+  },
+  "calculation": {
+    "formulaVersions": [
+      "formulaVersions-example"
+    ],
+    "roundingMode": "roundingMode-example"
+  },
+  "reasonCodeCatalogVersion": "reasonCodeCatalogVersion-example",
+  "checksum": "checksum-example"
+}

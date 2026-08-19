@@ -1,0 +1,13 @@
+{
+  "request": {
+    "customerId": "customerId-example",
+    "productId": "productId-example",
+    "requestedAmount": 1000,
+    "currency": "COP",
+    "unexpectedCreditOutcome": "Favorable"
+  },
+  "response": {
+    "applicationId": "applicationId-example",
+    "status": "Started"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.loan-platform.example/schemas/events/credit-offer-created.v1.schema.json",
+  "title": "CreditOfferCreated.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "eventVersion": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "aggregateId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "causationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "traceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assessmentId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alternativeId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "offerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "terms": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "amount": {
+              "type": "number"
+            },
+            "currency": {
+              "type": "string",
+              "minLength": 1
+            },
+            "termMonths": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "installmentAmount": {
+              "type": "number"
+            },
+            "interestRate": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "amount",
+            "currency",
+            "termMonths",
+            "installmentAmount",
+            "interestRate"
+          ]
+        },
+        "termsHash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rulesetVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "applicationId",
+        "assessmentId",
+        "decisionId",
+        "alternativeId",
+        "offerId",
+        "terms",
+        "termsHash",
+        "expiresAt",
+        "policyVersion",
+        "rulesetVersion"
+      ]
+    }
+  },
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "aggregateId",
+    "correlationId",
+    "causationId",
+    "producer",
+    "traceId",
+    "payload"
+  ]
+}

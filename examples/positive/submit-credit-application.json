@@ -1,0 +1,18 @@
+{
+  "path": {
+    "applicationId": "applicationId-example"
+  },
+  "request": {
+    "requestedAmount": 1000.0,
+    "currency": "COP",
+    "requestedTermMonths": 1,
+    "consentReferenceIds": [
+      "consentReferenceIds-example"
+    ],
+    "idempotencyKey": "idempotencyKey-example"
+  },
+  "response": {
+    "applicationId": "applicationId-example",
+    "status": "Submitted"
+  }
+}
