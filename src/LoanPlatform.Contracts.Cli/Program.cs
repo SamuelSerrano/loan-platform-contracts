@@ -11,9 +11,18 @@ if (args is not ["validate"])
 }
 
 string root = FindRepositoryRoot(Environment.CurrentDirectory);
+YamlArtifactRepository artifacts = new(root);
 ValidateContracts useCase = new(
-    new YamlArtifactRepository(root),
-    [new ArtifactStructureValidator(root)],
+    artifacts,
+    [
+        new ArtifactStructureValidator(root),
+        new FieldReconciliationValidator(root, artifacts),
+        new JsonSchemaExamplesValidator(root, artifacts),
+        new PublicBoundaryValidator(root),
+        new BoundedProcessValidator("openapi-official", "Redocly CLI 2.46.2", root, "npm", ["run", "validate:openapi"], TimeSpan.FromMinutes(2)),
+        new BoundedProcessValidator("asyncapi-official", "AsyncAPI Parser 3.6.3", root, "npm", ["run", "validate:asyncapi"], TimeSpan.FromMinutes(2)),
+        new BoundedProcessValidator("markdown-links", "markdown-link-check 3.15.0", root, "npm", ["run", "validate:links"], TimeSpan.FromMinutes(2))
+    ],
     new InitialCompatibilityBaseline(),
     new JsonValidationReportWriter(root),
     new LocalRepositoryMetadata(root));

@@ -10,17 +10,15 @@
       "minLength": 1
     },
     "requestType": {
-      "type": "string",
-      "minLength": 1
+      "const": "CreditAssessmentRequested.v1"
     },
     "requestVersion": {
-      "type": "integer",
-      "minimum": 0
+      "const": 1
     },
     "requestedAt": {
       "type": "string",
       "format": "date-time",
-      "pattern": "Z$"
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
     },
     "applicationId": {
       "type": "string",
@@ -39,12 +37,10 @@
       "minLength": 1
     },
     "producer": {
-      "type": "string",
-      "minLength": 1
+      "const": "ApplicationProcess"
     },
     "targetCapability": {
-      "type": "string",
-      "minLength": 1
+      "const": "CreditDecisioning"
     },
     "traceId": {
       "type": "string",
@@ -56,7 +52,7 @@
     },
     "snapshotHash": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^sha256:[0-9a-f]{64}$"
     },
     "payload": {
       "type": "object",
@@ -129,12 +125,12 @@
         "identityVerifiedAt": {
           "type": "string",
           "format": "date-time",
-          "pattern": "Z$"
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
         },
         "identityValidUntil": {
           "type": "string",
           "format": "date-time",
-          "pattern": "Z$"
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
         },
         "consentReferenceIds": {
           "type": "array",

@@ -36,8 +36,7 @@
           "minLength": 1
         },
         "status": {
-          "type": "string",
-          "minLength": 1
+          "const": "Draft"
         }
       },
       "required": [

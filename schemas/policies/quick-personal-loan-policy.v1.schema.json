@@ -11,7 +11,7 @@
     },
     "policyVersion": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^1\\.\\d+\\.\\d+$"
     },
     "rulesetVersion": {
       "type": "string",
@@ -20,7 +20,7 @@
     "effectiveFrom": {
       "type": "string",
       "format": "date-time",
-      "pattern": "Z$"
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
     },
     "product": {
       "type": "object",
@@ -130,7 +130,11 @@
             "properties": {
               "band": {
                 "type": "string",
-                "minLength": 1
+                "enum": [
+                  "Low",
+                  "Medium",
+                  "High"
+                ]
               },
               "minimumScore": {
                 "type": "integer",
@@ -192,7 +196,11 @@
             "properties": {
               "segment": {
                 "type": "string",
-                "minLength": 1
+                "enum": [
+                  "New",
+                  "Standard",
+                  "Preferred"
+                ]
               },
               "exposureCap": {
                 "type": "string",

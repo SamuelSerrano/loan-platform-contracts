@@ -20,6 +20,15 @@ public sealed class DependencyRuleTests
     public void CliIsTheCompositionRoot() => Assert.Equal(
         ["LoanPlatform.Contracts.Application", "LoanPlatform.Contracts.Infrastructure"], References("Cli").Order());
 
+    [Fact]
+    public void ProductiveProjectsCannotPublishSharedDtoPackages()
+    {
+        XDocument properties = XDocument.Load(Path.Combine(Root, "Directory.Build.props"));
+        Assert.Equal("false", properties.Descendants("IsPackable").Single().Value);
+        Assert.DoesNotContain(Directory.EnumerateFiles(Path.Combine(Root, "src"), "*.csproj", SearchOption.AllDirectories),
+            path => Path.GetFileName(path).Contains("Dto", StringComparison.OrdinalIgnoreCase) || Path.GetFileName(path).Contains("Models", StringComparison.OrdinalIgnoreCase));
+    }
+
     private static IEnumerable<string> References(string project)
     {
         string path = Path.Combine(Root, "src", $"LoanPlatform.Contracts.{project}", $"LoanPlatform.Contracts.{project}.csproj");

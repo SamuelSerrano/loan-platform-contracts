@@ -6,6 +6,6 @@
   "response": {
     "applicationId": "applicationId-example",
     "applicationNumber": "applicationNumber-example",
-    "status": "Submitted"
+    "status": "Draft"
   }
 }

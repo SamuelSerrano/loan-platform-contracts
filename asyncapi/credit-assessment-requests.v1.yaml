@@ -18,4 +18,7 @@ components:
   messages:
     CreditAssessmentRequested:
       name: CreditAssessmentRequested.v1
+      x-contract-kind: Asynchronous policy request; not an integration event and no IE identifier
+      x-producer: Application Process
+      x-known-consumers: [Credit Decisioning]
       payload: { $ref: ../schemas/requests/credit-assessment-requested.v1.schema.json }

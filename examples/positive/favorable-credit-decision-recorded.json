@@ -6,18 +6,18 @@
   "aggregateId": "aggregateId-example",
   "correlationId": "correlationId-example",
   "causationId": "causationId-example",
-  "producer": "ApplicationProcess",
+  "producer": "CreditDecisioning",
   "traceId": "traceId-example",
   "payload": {
     "assessmentId": "assessmentId-example",
     "applicationId": "applicationId-example",
     "decisionId": "decisionId-example",
-    "riskBand": "riskBand-example",
-    "segment": "segment-example",
+    "riskBand": "Low",
+    "segment": "New",
     "alternativeIds": [
       "alternativeIds-example"
     ],
-    "policyVersion": "policyVersion-example",
+    "policyVersion": "1.0.0",
     "rulesetVersion": "rulesetVersion-example"
   }
 }

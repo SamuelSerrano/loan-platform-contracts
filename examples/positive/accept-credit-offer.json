@@ -1,7 +1,4 @@
 {
-  "path": {
-    "applicationId": "applicationId-example"
-  },
   "request": {
     "offerId": "offerId-example",
     "termsHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -10,6 +7,6 @@
   "response": {
     "applicationId": "applicationId-example",
     "offerId": "offerId-example",
-    "status": "Submitted"
+    "status": "DocumentsPending"
   }
 }

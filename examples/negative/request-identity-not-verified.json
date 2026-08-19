@@ -26,7 +26,7 @@
     "verifiedNetMonthlyIncome": 1000.0,
     "monthlyDebtObligations": 1000.0,
     "identityVerificationId": "identityVerificationId-example",
-    "identityVerificationStatus": "Verified",
+    "identityVerificationStatus": "Rejected",
     "identityVerificationLevel": "identityVerificationLevel-example",
     "identityEvidenceStatus": "Sufficient",
     "identityVerifiedAt": "2026-08-19T12:00:00Z",

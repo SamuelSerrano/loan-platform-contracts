@@ -1,6 +1,6 @@
 {
   "policyId": "policyId-example",
-  "policyVersion": "1.0.0",
+  "policyVersion": "2.0.0",
   "rulesetVersion": "rulesetVersion-example",
   "effectiveFrom": "2026-08-19T12:00:00Z",
   "product": {

@@ -6,7 +6,7 @@
   "aggregateId": "aggregateId-example",
   "correlationId": "correlationId-example",
   "causationId": "causationId-example",
-  "producer": "ApplicationProcess",
+  "producer": "CreditDecisioning",
   "traceId": "traceId-example",
   "payload": {
     "applicationId": "applicationId-example",
@@ -23,7 +23,7 @@
     },
     "termsHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "expiresAt": "2026-08-19T12:00:00Z",
-    "policyVersion": "policyVersion-example",
+    "policyVersion": "1.0.0",
     "rulesetVersion": "rulesetVersion-example"
   }
 }

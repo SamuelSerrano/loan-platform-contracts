@@ -6,7 +6,7 @@
   "aggregateId": "aggregateId-example",
   "correlationId": "correlationId-example",
   "causationId": "causationId-example",
-  "producer": "ApplicationProcess",
+  "producer": "CustomerAndIdentity",
   "traceId": "traceId-example",
   "payload": {
     "applicationId": "applicationId-example",

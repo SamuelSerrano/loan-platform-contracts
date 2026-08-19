@@ -1,7 +1,4 @@
 {
-  "path": {
-    "applicationId": "applicationId-example"
-  },
   "request": {
     "requestedAmount": 1000.0,
     "currency": "COP",
@@ -13,6 +10,6 @@
   },
   "response": {
     "applicationId": "applicationId-example",
-    "status": "Submitted"
+    "status": "IdentityPending"
   }
 }

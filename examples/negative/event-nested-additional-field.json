@@ -1,19 +1,21 @@
 {
   "eventId": "eventId-example",
-  "eventType": "CustomerIdentityVerified.v1",
+  "eventType": "CreditApplicationSubmitted.v1",
   "eventVersion": 1,
   "occurredAt": "2026-08-19T12:00:00Z",
   "aggregateId": "aggregateId-example",
   "correlationId": "correlationId-example",
   "causationId": "causationId-example",
-  "producer": "CustomerAndIdentity",
+  "producer": "ApplicationProcess",
   "traceId": "traceId-example",
   "payload": {
     "applicationId": "applicationId-example",
     "customerId": "customerId-example",
-    "verificationId": "verificationId-example",
-    "verificationLevel": "verificationLevel-example",
-    "verifiedAt": "2026-08-19T12:00:00Z",
-    "validUntil": "2026-08-19T12:00:00Z"
+    "productId": "productId-example",
+    "consentReferenceIds": [
+      "consentReferenceIds-example"
+    ],
+    "submittedAt": "2026-08-19T12:00:00Z",
+    "unexpected": true
   }
 }

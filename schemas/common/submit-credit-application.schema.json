@@ -5,19 +5,6 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "path": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "applicationId": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "applicationId"
-      ]
-    },
     "request": {
       "type": "object",
       "additionalProperties": false,
@@ -64,8 +51,7 @@
           "minLength": 1
         },
         "status": {
-          "type": "string",
-          "minLength": 1
+          "const": "IdentityPending"
         }
       },
       "required": [
@@ -75,7 +61,6 @@
     }
   },
   "required": [
-    "path",
     "request",
     "response"
   ]

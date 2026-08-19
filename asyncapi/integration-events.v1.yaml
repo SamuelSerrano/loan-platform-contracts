@@ -64,28 +64,46 @@ components:
   messages:
     CreditApplicationSubmitted:
       name: CreditApplicationSubmitted.v1
+      x-producer: Application Process
+      x-known-consumers: [Customer & Identity, Audit projection]
       payload: { $ref: ../schemas/events/credit-application-submitted.v1.schema.json }
     CustomerIdentityVerified:
       name: CustomerIdentityVerified.v1
+      x-producer: Customer & Identity
+      x-known-consumers: [Application Process, Audit projection]
       payload: { $ref: ../schemas/events/customer-identity-verified.v1.schema.json }
     CustomerIdentityRejected:
       name: CustomerIdentityRejected.v1
+      x-producer: Customer & Identity
+      x-known-consumers: [Application Process, Communications only after Q-008, Audit projection]
       payload: { $ref: ../schemas/events/customer-identity-rejected.v1.schema.json }
     CreditAssessmentPendingEvidence:
       name: CreditAssessmentPendingEvidence.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process]
       payload: { $ref: ../schemas/events/credit-assessment-pending-evidence.v1.schema.json }
     CreditAssessmentPendingRetry:
       name: CreditAssessmentPendingRetry.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process]
       payload: { $ref: ../schemas/events/credit-assessment-pending-retry.v1.schema.json }
     CreditAssessmentOperationalExceptionRecorded:
       name: CreditAssessmentOperationalExceptionRecorded.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process, operations projection]
       payload: { $ref: ../schemas/events/credit-assessment-operational-exception-recorded.v1.schema.json }
     FavorableCreditDecisionRecorded:
       name: FavorableCreditDecisionRecorded.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process]
       payload: { $ref: ../schemas/events/favorable-credit-decision-recorded.v1.schema.json }
     UnfavorableCreditDecisionRecorded:
       name: UnfavorableCreditDecisionRecorded.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process]
       payload: { $ref: ../schemas/events/unfavorable-credit-decision-recorded.v1.schema.json }
     CreditOfferCreated:
       name: CreditOfferCreated.v1
+      x-producer: Credit Decisioning
+      x-known-consumers: [Application Process]
       payload: { $ref: ../schemas/events/credit-offer-created.v1.schema.json }

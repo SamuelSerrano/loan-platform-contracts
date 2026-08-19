@@ -1,6 +1,6 @@
 {
   "eventId": "eventId-example",
-  "eventType": "UnfavorableCreditDecisionRecorded.v1",
+  "eventType": "CreditOfferCreated.v1",
   "eventVersion": 1,
   "occurredAt": "2026-08-19T12:00:00Z",
   "aggregateId": "aggregateId-example",
@@ -9,12 +9,20 @@
   "producer": "CreditDecisioning",
   "traceId": "traceId-example",
   "payload": {
-    "assessmentId": "assessmentId-example",
     "applicationId": "applicationId-example",
+    "assessmentId": "assessmentId-example",
     "decisionId": "decisionId-example",
-    "reasonCodes": [
-      "reasonCodes-example"
-    ],
+    "alternativeId": "alternativeId-example",
+    "offerId": "offerId-example",
+    "terms": {
+      "amount": 1000.0,
+      "currency": "COP",
+      "termMonths": 1,
+      "installmentAmount": 1000.0,
+      "interestRate": 1000.0
+    },
+    "termsHash": "changed-without-valid-hash",
+    "expiresAt": "2026-08-19T12:00:00Z",
     "policyVersion": "1.0.0",
     "rulesetVersion": "rulesetVersion-example"
   }

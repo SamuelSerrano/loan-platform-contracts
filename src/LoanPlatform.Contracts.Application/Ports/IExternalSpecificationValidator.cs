@@ -6,5 +6,13 @@ public interface IExternalSpecificationValidator
 {
     string GateId { get; }
 
-    Task<IReadOnlyList<ValidationFinding>> ValidateAsync(CancellationToken cancellationToken);
+    Task<ValidationGateResult> ValidateAsync(CancellationToken cancellationToken);
+}
+
+public sealed record ValidationGateResult(
+    string GateId,
+    string ValidatorVersion,
+    IReadOnlyList<ValidationFinding> Findings)
+{
+    public bool Succeeded => Findings.All(finding => finding.Severity != ValidationSeverity.Error);
 }

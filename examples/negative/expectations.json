@@ -1,0 +1,18 @@
+[
+  { "schema": "schemas/common/start-credit-application.schema.json", "example": "start-credit-application-unknown-field.json", "keyword": "additionalProperties", "location": "/request" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "credit-application-submitted-missing-payload.json", "keyword": "required", "location": "" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-version-zero.json", "keyword": "const", "location": "/eventVersion" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-version-unknown.json", "keyword": "const", "location": "/eventVersion" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-wrong-type.json", "keyword": "const", "location": "/eventType" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-root-additional-field.json", "keyword": "additionalProperties", "location": "" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-nested-additional-field.json", "keyword": "additionalProperties", "location": "/payload" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-invalid-timestamp.json", "keyword": "pattern", "location": "/occurredAt" },
+  { "schema": "schemas/events/credit-application-submitted.v1.schema.json", "example": "event-non-z-timestamp.json", "keyword": "pattern", "location": "/occurredAt" },
+  { "schema": "schemas/requests/credit-assessment-requested.v1.schema.json", "example": "request-wrong-type.json", "keyword": "const", "location": "/requestType" },
+  { "schema": "schemas/requests/credit-assessment-requested.v1.schema.json", "example": "request-unsupported-version.json", "keyword": "const", "location": "/requestVersion" },
+  { "schema": "schemas/requests/credit-assessment-requested.v1.schema.json", "example": "request-identity-not-verified.json", "keyword": "const", "location": "/payload/identityVerificationStatus" },
+  { "schema": "schemas/common/standard-problem.schema.json", "example": "standard-problem-reason-code-leak.json", "keyword": "additionalProperties", "location": "" },
+  { "schema": "schemas/common/standard-problem.schema.json", "example": "standard-problem-invalid-status.json", "keyword": "maximum", "location": "/status" },
+  { "schema": "schemas/events/credit-offer-created.v1.schema.json", "example": "offer-invalid-terms-hash.json", "keyword": "pattern", "location": "/payload/termsHash" },
+  { "schema": "schemas/policies/quick-personal-loan-policy.v1.schema.json", "example": "policy-unsupported-major-version.json", "keyword": "pattern", "location": "/policyVersion" }
+]

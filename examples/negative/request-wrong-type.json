@@ -1,6 +1,6 @@
 {
   "requestId": "requestId-example",
-  "requestType": "CreditAssessmentRequested.v1",
+  "requestType": "UnknownRequest.v1",
   "requestVersion": 1,
   "requestedAt": "2026-08-19T12:00:00Z",
   "applicationId": "applicationId-example",

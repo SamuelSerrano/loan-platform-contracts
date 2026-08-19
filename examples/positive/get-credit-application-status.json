@@ -1,9 +1,6 @@
 {
-  "path": {
-    "applicationId": "applicationId-example"
-  },
   "response": {
     "applicationId": "applicationId-example",
-    "status": "Submitted"
+    "status": "Draft"
   }
 }

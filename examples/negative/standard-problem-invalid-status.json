@@ -1,7 +1,7 @@
 {
   "type": "type-example",
   "title": "title-example",
-  "status": 400,
+  "status": 700,
   "code": "code-example",
   "traceId": "traceId-example"
 }

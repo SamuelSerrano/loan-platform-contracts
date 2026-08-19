@@ -26,8 +26,6 @@ jobs:
       - run: dotnet format --verify-no-changes --no-restore
       - run: dotnet test --no-build
       - run: dotnet run --project src/LoanPlatform.Contracts.Cli --no-build -- validate
-      - run: npm run validate:standards
-      - run: npm run validate:links
       - name: Scan tracked sources for secret material
         run: |
           if git grep -nE '(gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY)'; then

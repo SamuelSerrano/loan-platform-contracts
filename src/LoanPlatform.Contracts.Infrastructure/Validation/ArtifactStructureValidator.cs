@@ -6,9 +6,9 @@ namespace LoanPlatform.Contracts.Infrastructure.Validation;
 
 public sealed class ArtifactStructureValidator(string repositoryRoot) : IExternalSpecificationValidator
 {
-    public string GateId => "json-schema-structure";
+    public string GateId => "closed-json-schemas";
 
-    public Task<IReadOnlyList<ValidationFinding>> ValidateAsync(CancellationToken cancellationToken)
+    public Task<ValidationGateResult> ValidateAsync(CancellationToken cancellationToken)
     {
         List<ValidationFinding> findings = [];
         foreach (string path in Directory.EnumerateFiles(Path.Combine(repositoryRoot, "schemas"), "*.json", SearchOption.AllDirectories))
@@ -16,7 +16,7 @@ public sealed class ArtifactStructureValidator(string repositoryRoot) : IExterna
             using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path));
             ValidateNode(document.RootElement, Path.GetRelativePath(repositoryRoot, path), "#", findings);
         }
-        return Task.FromResult<IReadOnlyList<ValidationFinding>>(findings);
+        return Task.FromResult(new ValidationGateResult(GateId, "built-in/.NET 10", findings));
     }
 
     private static void ValidateNode(JsonElement node, string file, string pointer, ICollection<ValidationFinding> findings)
