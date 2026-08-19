@@ -6,8 +6,7 @@
   "additionalProperties": false,
   "properties": {
     "policyId": {
-      "type": "string",
-      "minLength": 1
+      "const": "quick-personal-loan-demo"
     },
     "policyVersion": {
       "type": "string",
@@ -15,7 +14,7 @@
     },
     "rulesetVersion": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^m1-ruleset-v1\\.\\d+\\.\\d+$"
     },
     "effectiveFrom": {
       "type": "string",
@@ -27,31 +26,34 @@
       "additionalProperties": false,
       "properties": {
         "productId": {
-          "type": "string",
-          "minLength": 1
+          "const": "quick-personal-loan-demo"
         },
         "minimumAmount": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 0.01
         },
         "maximumAmount": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 0.01
         },
         "currency": {
-          "type": "string",
-          "minLength": 1
+          "const": "XTS"
         },
         "supportedTermMonths": {
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
           "items": {
-            "type": "string",
-            "minLength": 1
+            "type": "integer",
+            "minimum": 1
           }
         },
         "lowFrictionThreshold": {
-          "type": "string",
-          "minLength": 1
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 0.01
         }
       },
       "required": [
@@ -69,14 +71,16 @@
       "properties": {
         "minimumAgeAtApplication": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 1
         },
         "maximumAgeAtMaturity": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 1
         },
         "minimumIncome": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "multipleOf": 0.01
         },
         "maximumActiveApplicationsPerCustomer": {
           "type": "integer",
@@ -92,7 +96,7 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^TEST-[A-Z0-9-]+$"
           }
         }
       },
@@ -111,19 +115,23 @@
       "properties": {
         "minimumValidScore": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000
         },
         "maximumValidScore": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000
         },
         "minimumEligibleScore": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "maximum": 1000
         },
         "riskBands": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 3,
+          "maxItems": 3,
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -142,26 +150,33 @@
               },
               "maximumScore": {
                 "type": "integer",
-                "minimum": 0
+                "minimum": 0,
+                "maximum": 1000
               },
               "paymentToIncomeLimit": {
-                "type": "number"
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
               },
               "exposureCap": {
-                "type": "string",
-                "minLength": 1
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "multipleOf": 0.01
               },
               "permittedTermMonths": {
                 "type": "array",
                 "minItems": 1,
                 "uniqueItems": true,
                 "items": {
-                  "type": "string",
-                  "minLength": 1
+                  "type": "integer",
+                  "minimum": 1
                 }
               },
               "baseMonthlyEffectiveRate": {
-                "type": "number"
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "multipleOf": 0.000001
               }
             },
             "required": [
@@ -189,7 +204,8 @@
       "properties": {
         "segmentRules": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 3,
+          "maxItems": 3,
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -203,11 +219,15 @@
                 ]
               },
               "exposureCap": {
-                "type": "string",
-                "minLength": 1
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "multipleOf": 0.01
               },
               "rateAdjustmentPercentagePoints": {
-                "type": "number"
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1,
+                "multipleOf": 0.000001
               }
             },
             "required": [
@@ -219,15 +239,17 @@
         },
         "maximumCount": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 1,
+          "maximum": 3
         },
         "objectives": {
           "type": "array",
           "minItems": 1,
+          "maxItems": 3,
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "minLength": 1
+            "enum": ["RequestedOrMaximumAmount", "LowestInstallment", "LowestTotalCost"]
           }
         }
       },
@@ -243,7 +265,7 @@
       "properties": {
         "validityDuration": {
           "type": "string",
-          "minLength": 1
+          "pattern": "^PT[1-9]\\d*H$"
         }
       },
       "required": [
@@ -255,7 +277,10 @@
       "additionalProperties": false,
       "properties": {
         "minimumMonthlyEffectiveRate": {
-          "type": "number"
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "multipleOf": 0.000001
         }
       },
       "required": [
@@ -272,12 +297,11 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9-]*-v1\\.\\d+\\.\\d+$"
           }
         },
         "roundingMode": {
-          "type": "string",
-          "minLength": 1
+          "const": "MidpointAwayFromZero:2dp"
         }
       },
       "required": [
@@ -287,11 +311,11 @@
     },
     "reasonCodeCatalogVersion": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^reason-codes-v1\\.\\d+\\.\\d+$"
     },
     "checksum": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^sha256:[0-9a-f]{64}$"
     }
   },
   "required": [

@@ -1,43 +1,75 @@
 {
-  "policyId": "policyId-example",
+  "policyId": "quick-personal-loan-demo",
   "policyVersion": "2.0.0",
-  "rulesetVersion": "rulesetVersion-example",
-  "effectiveFrom": "2026-08-19T12:00:00Z",
+  "rulesetVersion": "m1-ruleset-v1.0.0",
+  "effectiveFrom": "2026-08-19T00:00:00Z",
   "product": {
-    "productId": "productId-example",
-    "minimumAmount": 1000.0,
-    "maximumAmount": 1000.0,
-    "currency": "COP",
+    "productId": "quick-personal-loan-demo",
+    "minimumAmount": 100.0,
+    "maximumAmount": 2000.0,
+    "currency": "XTS",
     "supportedTermMonths": [
-      "supportedTermMonths-example"
+      3,
+      6,
+      9,
+      12
     ],
-    "lowFrictionThreshold": "lowFrictionThreshold-example"
+    "lowFrictionThreshold": 1000.0
   },
   "eligibility": {
-    "minimumAgeAtApplication": 1,
-    "maximumAgeAtMaturity": 1,
-    "minimumIncome": 1000.0,
+    "minimumAgeAtApplication": 18,
+    "maximumAgeAtMaturity": 70,
+    "minimumIncome": 500.0,
     "maximumActiveApplicationsPerCustomer": 1,
     "maximumActiveLoansPerCustomer": 1,
     "supportedMarkets": [
-      "supportedMarkets-example"
+      "TEST-MARKET"
     ]
   },
   "risk": {
-    "minimumValidScore": 1,
-    "maximumValidScore": 1,
-    "minimumEligibleScore": 1,
+    "minimumValidScore": 0,
+    "maximumValidScore": 1000,
+    "minimumEligibleScore": 500,
     "riskBands": [
       {
         "band": "Low",
-        "minimumScore": 1,
-        "maximumScore": 1,
-        "paymentToIncomeLimit": 1000.0,
-        "exposureCap": "exposureCap-example",
+        "minimumScore": 750,
+        "maximumScore": 1000,
+        "paymentToIncomeLimit": 0.35,
+        "exposureCap": 2000.0,
         "permittedTermMonths": [
-          "permittedTermMonths-example"
+          3,
+          6,
+          9,
+          12
         ],
-        "baseMonthlyEffectiveRate": 1000.0
+        "baseMonthlyEffectiveRate": 0.017
+      },
+      {
+        "band": "Medium",
+        "minimumScore": 600,
+        "maximumScore": 749,
+        "paymentToIncomeLimit": 0.3,
+        "exposureCap": 1400.0,
+        "permittedTermMonths": [
+          3,
+          6,
+          9,
+          12
+        ],
+        "baseMonthlyEffectiveRate": 0.019
+      },
+      {
+        "band": "High",
+        "minimumScore": 500,
+        "maximumScore": 599,
+        "paymentToIncomeLimit": 0.25,
+        "exposureCap": 700.0,
+        "permittedTermMonths": [
+          3,
+          6
+        ],
+        "baseMonthlyEffectiveRate": 0.021
       }
     ]
   },
@@ -45,27 +77,41 @@
     "segmentRules": [
       {
         "segment": "New",
-        "exposureCap": "exposureCap-example",
-        "rateAdjustmentPercentagePoints": 1000.0
+        "exposureCap": 800.0,
+        "rateAdjustmentPercentagePoints": 0.0
+      },
+      {
+        "segment": "Standard",
+        "exposureCap": 1400.0,
+        "rateAdjustmentPercentagePoints": 0.0
+      },
+      {
+        "segment": "Preferred",
+        "exposureCap": 2000.0,
+        "rateAdjustmentPercentagePoints": -0.002
       }
     ],
-    "maximumCount": 1,
+    "maximumCount": 3,
     "objectives": [
-      "objectives-example"
+      "RequestedOrMaximumAmount",
+      "LowestInstallment",
+      "LowestTotalCost"
     ]
   },
   "offer": {
-    "validityDuration": "validityDuration-example"
+    "validityDuration": "PT24H"
   },
   "pricing": {
-    "minimumMonthlyEffectiveRate": 1000.0
+    "minimumMonthlyEffectiveRate": 0.015
   },
   "calculation": {
     "formulaVersions": [
-      "formulaVersions-example"
+      "payment-capacity-v1.0.0",
+      "present-value-v1.0.0",
+      "canonical-terms-hash-v1.0.0"
     ],
-    "roundingMode": "roundingMode-example"
+    "roundingMode": "MidpointAwayFromZero:2dp"
   },
-  "reasonCodeCatalogVersion": "reasonCodeCatalogVersion-example",
-  "checksum": "checksum-example"
+  "reasonCodeCatalogVersion": "reason-codes-v1.0.0",
+  "checksum": "sha256:5b3d3ec0e90b6f6d279f3c4ddf4c13217fb934821d1105872398e6b42db6b881"
 }

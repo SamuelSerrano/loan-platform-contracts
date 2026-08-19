@@ -149,6 +149,36 @@ public sealed class ContractArtifactTests
         Assert.True(LoadSchema(Path.Combine(Root, "schemas/common/standard-problem.schema.json")).Evaluate(problem.RootElement).IsValid);
     }
 
+    [Fact]
+    public void QuickPolicyFixtureMaterializesTheCanonicalFictitiousBaseline()
+    {
+        using JsonDocument document = JsonDocument.Parse(File.ReadAllText(Path.Combine(Root, "examples/positive/quick-personal-loan-policy.json")));
+        JsonElement root = document.RootElement;
+        JsonElement product = root.GetProperty("product");
+        Assert.Equal(100m, product.GetProperty("minimumAmount").GetDecimal());
+        Assert.Equal(2000m, product.GetProperty("maximumAmount").GetDecimal());
+        Assert.Equal(1000m, product.GetProperty("lowFrictionThreshold").GetDecimal());
+        Assert.Equal("XTS", product.GetProperty("currency").GetString());
+        Assert.Equal([3, 6, 9, 12], product.GetProperty("supportedTermMonths").EnumerateArray().Select(item => item.GetInt32()));
+        JsonElement eligibility = root.GetProperty("eligibility");
+        Assert.Equal((18, 70, 500m, 1, 1),
+            (eligibility.GetProperty("minimumAgeAtApplication").GetInt32(), eligibility.GetProperty("maximumAgeAtMaturity").GetInt32(),
+             eligibility.GetProperty("minimumIncome").GetDecimal(), eligibility.GetProperty("maximumActiveApplicationsPerCustomer").GetInt32(),
+             eligibility.GetProperty("maximumActiveLoansPerCustomer").GetInt32()));
+        Assert.Equal(["Low:750-1000:0.35:2000:0.017", "Medium:600-749:0.30:1400:0.019", "High:500-599:0.25:700:0.021"],
+            root.GetProperty("risk").GetProperty("riskBands").EnumerateArray().Select(band =>
+                $"{band.GetProperty("band").GetString()}:{band.GetProperty("minimumScore").GetInt32()}-{band.GetProperty("maximumScore").GetInt32()}:{band.GetProperty("paymentToIncomeLimit").GetDecimal():0.00}:{band.GetProperty("exposureCap").GetDecimal():0}:{band.GetProperty("baseMonthlyEffectiveRate").GetDecimal():0.000}"));
+        Assert.Equal(["Low:3,6,9,12", "Medium:3,6,9,12", "High:3,6"],
+            root.GetProperty("risk").GetProperty("riskBands").EnumerateArray().Select(band =>
+                $"{band.GetProperty("band").GetString()}:{string.Join(',', band.GetProperty("permittedTermMonths").EnumerateArray().Select(term => term.GetInt32()))}"));
+        Assert.Equal(["New:800:0.000", "Standard:1400:0.000", "Preferred:2000:-0.002"],
+            root.GetProperty("alternatives").GetProperty("segmentRules").EnumerateArray().Select(segment =>
+                $"{segment.GetProperty("segment").GetString()}:{segment.GetProperty("exposureCap").GetDecimal():0}:{segment.GetProperty("rateAdjustmentPercentagePoints").GetDecimal():0.000}"));
+        Assert.Equal(3, root.GetProperty("alternatives").GetProperty("maximumCount").GetInt32());
+        Assert.Equal("PT24H", root.GetProperty("offer").GetProperty("validityDuration").GetString());
+        Assert.Equal("MidpointAwayFromZero:2dp", root.GetProperty("calculation").GetProperty("roundingMode").GetString());
+    }
+
     private static string Slug(string name) => string.Concat(name.Replace(".v1", "").Select((character, index) =>
         char.IsUpper(character) && index > 0 ? $"-{char.ToLowerInvariant(character)}" : char.ToLowerInvariant(character).ToString()));
 

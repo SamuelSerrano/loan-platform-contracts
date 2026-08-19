@@ -18,7 +18,9 @@ ValidateContracts useCase = new(
         new ArtifactStructureValidator(root),
         new FieldReconciliationValidator(root, artifacts),
         new JsonSchemaExamplesValidator(root, artifacts),
+        new PolicyIntegrityValidator(root),
         new PublicBoundaryValidator(root),
+        new TrackedSourceSecretValidator(root),
         new BoundedProcessValidator("openapi-official", "Redocly CLI 2.46.2", root, "npm", ["run", "validate:openapi"], TimeSpan.FromMinutes(2)),
         new BoundedProcessValidator("asyncapi-official", "AsyncAPI Parser 3.6.3", root, "npm", ["run", "validate:asyncapi"], TimeSpan.FromMinutes(2)),
         new BoundedProcessValidator("markdown-links", "markdown-link-check 3.15.0", root, "npm", ["run", "validate:links"], TimeSpan.FromMinutes(2))

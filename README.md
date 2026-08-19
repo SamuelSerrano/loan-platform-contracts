@@ -34,7 +34,7 @@ dotnet run --project src/LoanPlatform.Contracts.Cli -- validate
 npm ci
 ```
 
-Run `npm ci` before the CLI. The CLI is the single consolidated validation entry point and invokes the pinned OpenAPI, AsyncAPI and Markdown validators through bounded Infrastructure process adapters.
+Run `npm ci` before the CLI. The CLI is the single consolidated validation entry point and invokes pinned OpenAPI, AsyncAPI and Markdown validators through bounded Infrastructure process adapters. It also records schema/example, exact 16/175, policy-integrity, Q-008, compatibility and tracked-source secret-scan gates in one sanitized report.
 
 ## Security
 
