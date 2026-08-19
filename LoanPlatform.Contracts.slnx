@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LoanPlatform.Contracts.Application/LoanPlatform.Contracts.Application.csproj" />
+    <Project Path="src/LoanPlatform.Contracts.Cli/LoanPlatform.Contracts.Cli.csproj" />
+    <Project Path="src/LoanPlatform.Contracts.Domain/LoanPlatform.Contracts.Domain.csproj" />
+    <Project Path="src/LoanPlatform.Contracts.Infrastructure/LoanPlatform.Contracts.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LoanPlatform.Contracts.Application.Tests/LoanPlatform.Contracts.Application.Tests.csproj" />
+    <Project Path="tests/LoanPlatform.Contracts.Architecture.Tests/LoanPlatform.Contracts.Architecture.Tests.csproj" />
+    <Project Path="tests/LoanPlatform.Contracts.ContractTests/LoanPlatform.Contracts.ContractTests.csproj" />
+    <Project Path="tests/LoanPlatform.Contracts.Domain.Tests/LoanPlatform.Contracts.Domain.Tests.csproj" />
+    <Project Path="tests/LoanPlatform.Contracts.Infrastructure.Tests/LoanPlatform.Contracts.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>

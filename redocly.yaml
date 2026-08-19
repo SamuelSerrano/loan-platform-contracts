@@ -1,0 +1,6 @@
+extends:
+  - recommended-strict
+
+apis:
+  loan-application@v1:
+    root: openapi/loan-application-api.v1.yaml

@@ -109,7 +109,7 @@ Q-001, Q-002, Q-006, Q-007, and Q-008 remain open. No issue #19 or later work be
 
 **Architecture:** C# owns governance rules and orchestration. Standards tools and filesystem/Git/process concerns remain Infrastructure adapters behind Application ports; the CLI composes and runs all gates.
 
-**Tech stack:** .NET SDK `10.0.400`; C#; xUnit `2.9.3`; Microsoft.NET.Test.Sdk `18.8.1`; YamlDotNet `18.1.0`; JsonSchema.Net `9.4.0`; Node `20.20.2`; Redocly CLI `2.46.2`; AsyncAPI CLI `6.0.2`; AJV `8.20.0`; YAML `2.9.0`; Markdown Link Check `3.15.0`.
+**Tech stack:** .NET SDK `10.0.400`; C#; xUnit `2.9.3`; Microsoft.NET.Test.Sdk `18.8.1`; YamlDotNet `18.1.0`; JsonSchema.Net `9.4.0`; Node `24.19.0`; npm `11.17.0`; Redocly CLI `2.46.2`; official AsyncAPI Parser `3.6.3`; AJV `8.20.0`; YAML `2.9.0`; Markdown Link Check `3.15.0`.
 
 ### Global constraints
 

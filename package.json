@@ -1,0 +1,21 @@
+{
+  "name": "loan-platform-contracts-tooling",
+  "version": "0.0.0-private",
+  "private": true,
+  "engines": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "scripts": {
+    "validate:openapi": "redocly lint openapi/loan-application-api.v1.yaml && redocly bundle openapi/loan-application-api.v1.yaml --output artifacts/validation/openapi-bundle.yaml",
+    "validate:asyncapi": "node tools/validate-asyncapi.mjs asyncapi/integration-events.v1.yaml asyncapi/credit-assessment-requests.v1.yaml",
+    "validate:standards": "npm run validate:openapi && npm run validate:asyncapi"
+  },
+  "devDependencies": {
+    "@asyncapi/parser": "3.6.3",
+    "@redocly/cli": "2.46.2",
+    "ajv": "8.20.0",
+    "markdown-link-check": "3.15.0",
+    "yaml": "2.9.0"
+  }
+}
